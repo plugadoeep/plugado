@@ -5,12 +5,18 @@
     <head>
         <meta charset="utf-8"/>
         <title>Spring Boot Security</title>
+
+        <link rel="stylesheet" type="text/css" th:href="@{/webjars/normalize.css/3.0.2/normalize.css}"/>
+        <link rel="stylesheet" type="text/css" th:href="@{/webjars/font-awesome/4.7.0/css/font-awesome.css}"/>
         <link rel="stylesheet" type="text/css" th:href="@{/style.css}"/>
-        <script type="text/javascript" th:src="@{/script.js}"/>
 
         <!--[if lte IE 8]>
-        <script type="text/javascript" src="@{/wro/compatibility.js}"></script>
+        <script type="text/javascript" th:src="@{/webjars/html5shiv/3.7.3/html5shiv.js}"></script>
+        <script type="text/javascript" th:src="@{/webjars/respond/1.4.2/src/respond.js}"></script>
         <![endif]-->
+
+        <script type="text/javascript" th:src="@{/webjars/jquery/1.12.4/jquery.js}"></script>
+        <script type="text/javascript" th:src="@{/script.js}"></script>
     </head>
     <body>
         <div id="layout">

@@ -10,6 +10,7 @@ import javax.persistence.*;
 @Table(name = "funcao")
 public class Funcao implements java.io.Serializable {
     private static final long serialVersionUID = -615312334271967062L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
