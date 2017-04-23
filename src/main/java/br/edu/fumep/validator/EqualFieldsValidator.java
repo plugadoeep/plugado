@@ -1,14 +1,15 @@
 package br.edu.fumep.validator;
 
-/**
- * Created by arabasso on 13/03/2017.
- */
 import br.edu.fumep.constraint.EqualFields;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 import java.lang.reflect.Field;
 
+/**
+ * Created by arabasso on 23/04/2017.
+ *
+ */
 public class EqualFieldsValidator implements ConstraintValidator<EqualFields, Object> {
 
     private String baseField;

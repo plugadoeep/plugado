@@ -3,7 +3,8 @@ package br.edu.fumep.entity;
 import javax.persistence.*;
 
 /**
- * Created by arabasso on 22/08/15.
+ * Created by arabasso on 23/04/2017.
+ *
  */
 @Entity
 @Table(name = "funcao")

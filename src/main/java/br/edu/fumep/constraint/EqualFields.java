@@ -1,8 +1,5 @@
 package br.edu.fumep.constraint;
 
-/**
- * Created by arabasso on 13/03/2017.
- */
 import br.edu.fumep.validator.EqualFieldsValidator;
 
 import javax.validation.Constraint;
@@ -12,6 +9,10 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+/**
+ * Created by arabasso on 23/04/2017.
+ *
+ */
 @Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 @Constraint(validatedBy = {EqualFieldsValidator.class})

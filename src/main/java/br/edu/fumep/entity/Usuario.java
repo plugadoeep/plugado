@@ -1,22 +1,22 @@
 package br.edu.fumep.entity;
 
 import br.edu.fumep.config.RoleGrantedAuthority;
-import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
 import static java.util.stream.Collectors.toList;
 
 /**
- * Created by arabasso on 21/08/15.
+ * Created by arabasso on 23/04/2017.
+ *
  */
 @Entity
 @Table(name = "usuario")
-public class Usuario implements UserDetails, java.io.Serializable {
+public class Usuario implements java.io.Serializable {
     private static final long serialVersionUID = -6113123348770067062L;
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,64 +39,6 @@ public class Usuario implements UserDetails, java.io.Serializable {
         adicionarFuncao("ROLE_USUARIO");
     }
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return funcoes
-                .stream()
-                .map(RoleGrantedAuthority::new)
-                .collect(toList());
-    }
-
-    @Override
-    public String getPassword() {
-        return senha;
-    }
-
-    @Override
-    public String getUsername() {
-        return login;
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return ativo;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return ativo;
-    }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public String getSenha() {
-        return senha;
-    }
-
-    public boolean isAtivo() {
-        return ativo;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void mudarSenha(String password){
-        this.senha = password;
-    }
-
     public void adicionarFuncao(String name){
         funcoes.add(new Funcao(this, name));
     }
@@ -105,7 +47,10 @@ public class Usuario implements UserDetails, java.io.Serializable {
         funcoes.removeIf(r -> r.getNome() == role);
     }
 
-    public void setAtivo(boolean ativo) {
-        this.ativo = ativo;
+    public UserDetails toUserDetails() {
+        return new User(login, senha, funcoes
+                .stream()
+                .map(RoleGrantedAuthority::new)
+                .collect(toList()));
     }
 }

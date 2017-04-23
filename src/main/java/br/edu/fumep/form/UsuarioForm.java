@@ -5,7 +5,8 @@ import br.edu.fumep.constraint.UniqueLogin;
 import org.hibernate.validator.constraints.NotBlank;
 
 /**
- * Created by arabasso on 13/03/2017.
+ * Created by arabasso on 23/04/2017.
+ *
  */
 @EqualFields(baseField = "senha", matchField = "confirmarSenha")
 public class UsuarioForm {

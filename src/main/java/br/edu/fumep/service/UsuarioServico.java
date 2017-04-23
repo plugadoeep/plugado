@@ -7,7 +7,8 @@ import org.springframework.stereotype.Component;
 import javax.transaction.Transactional;
 
 /**
- * Created by arabasso on 13/03/2017.
+ * Created by arabasso on 23/04/2017.
+ *
  */
 @Component
 public class UsuarioServico {

@@ -9,18 +9,14 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
-import java.util.ArrayList;
 import java.util.Optional;
 
 /**
- * Created by arabasso on 22/08/15.
+ * Created by arabasso on 23/04/2017.
+ *
  */
 @Configuration
 @EnableGlobalMethodSecurity(securedEnabled = true)
@@ -53,7 +49,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 throw new UsernameNotFoundException(username);
             }
 
-            return usuario.get();
+            return usuario.get().toUserDetails();
         });
     }
 }

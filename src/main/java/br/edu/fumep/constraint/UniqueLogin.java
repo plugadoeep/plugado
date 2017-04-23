@@ -9,7 +9,8 @@ import java.lang.annotation.Target;
 import br.edu.fumep.validator.UniqueLoginValidator;
 
 /**
- * Created by arabasso on 13/03/2017.
+ * Created by arabasso on 23/04/2017.
+ *
  */
 @Target({ElementType.METHOD, ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
