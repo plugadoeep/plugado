@@ -1,0 +1,36 @@
+<section class="content" layout:decorator="layout" layout:fragment="content"
+         xmlns:th="http://www.thymeleaf.org"
+         xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+    <h2>Register</h2>
+    <!--/*@thymesVar id="form" type="br.edu.fumep.form.UsuarioForm"*/-->
+    <form th:action="@{/usuarios/registrar}" th:object="${form}" method="post">
+        <ul th:if="${#fields.hasErrors('global')}">
+            <li th:each="err : ${#fields.errors('global')}" th:text="${err}">Input is incorrect</li>
+        </ul>
+
+        <fieldset>
+            <div>
+                <label th:for="*{login}">Login</label>
+                <input type="text" th:field="*{login}" placeholder="Login" />
+                <div th:if="${#fields.hasErrors('login')}" th:errors="*{login}"></div>
+            </div>
+
+            <div>
+                <label th:for="*{senha}">Senha</label>
+                <input type="password" th:field="*{senha}" placeholder="Senha" />
+                <div th:if="${#fields.hasErrors('senha')}" th:errors="*{senha}"></div>
+            </div>
+
+            <div>
+                <label th:for="*{confirmarSenha}">Confirmar senha</label>
+                <input type="password" th:field="*{confirmarSenha}" placeholder="Confirmar senha" />
+                <div th:if="${#fields.hasErrors('confirmarSenha')}" th:errors="*{confirmarSenha}"></div>
+            </div>
+
+            <div>
+                <button type="submit">Register</button>
+                <a th:href="@{/login}">Cancel</a>
+            </div>
+        </fieldset>
+    </form>
+</section>
