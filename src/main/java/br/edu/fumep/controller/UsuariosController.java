@@ -2,20 +2,15 @@ package br.edu.fumep.controller;
 
 import br.edu.fumep.entity.Usuario;
 import br.edu.fumep.form.UsuarioForm;
-import br.edu.fumep.repository.UsuarioRepositorio;
-import br.edu.fumep.service.UsuarioServico;
-import org.hibernate.validator.constraints.NotBlank;
+import br.edu.fumep.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.transaction.Transactional;
 import javax.validation.Valid;
 
 /**
@@ -33,7 +28,7 @@ public class UsuariosController {
     }
 
     @Autowired
-    UsuarioServico usuarioServico;
+    UsuarioService usuarioService;
 
     @RequestMapping(value = {"/registrar"}, method = RequestMethod.POST)
     public String register(@Valid @ModelAttribute("form") UsuarioForm form, BindingResult bindingResult){
@@ -45,7 +40,7 @@ public class UsuariosController {
             try{
                 Usuario usuario = new Usuario(form.getLogin(), form.getSenha());
 
-                usuarioServico.salvar(usuario);
+                usuarioService.salvar(usuario);
             }
 
             catch(Exception e){

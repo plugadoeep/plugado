@@ -11,10 +11,10 @@ import javax.transaction.Transactional;
  *
  */
 @Component
-public class UsuarioServico {
+public class UsuarioService {
     private UsuarioRepositorio usuarioRepositorio;
 
-    public UsuarioServico(UsuarioRepositorio usuarioRepositorio) {
+    public UsuarioService(UsuarioRepositorio usuarioRepositorio) {
         this.usuarioRepositorio = usuarioRepositorio;
     }
 

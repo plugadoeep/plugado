@@ -25,10 +25,9 @@
 
         <nav>
             <ul>
-                <li><a th:href="@{/}" th:text="#{menu.link.home}">Home</a></li>
                 <li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/user}" th:text="#{menu.link.users}">Users</a></li>
-                <li sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_USER')"><a th:href="@{/hello}" th:text="#{menu.link.hello}">Hello</a></li>
-                <li><a th:href="@{/sobre}" th:text="#{menu.link.about}">About</a></li>
+                <li sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_USER')"><a th:href="@{/grupos/index}"><i class="fa fa-users" aria-hidden="true"></i> <span th:text="#{menu.link.groups}">Groups</span></a></li>
+                <li><a th:href="@{/sobre}"><span th:text="#{menu.link.about}">About</span></a></li>
                 <li><a th:href="@{/contato}" th:text="#{menu.link.contact}">Contact</a></li>
                 <li sec:authorize="isAnonymous()"><a th:href="@{/login}" th:text="#{menu.link.login}">Login</a></li>
                 <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}"><i class="fa fa-sign-out" aria-hidden="true"></i> <span th:text="#{menu.link.logout}">Logout</span></a></li>
