@@ -45,7 +45,7 @@ public class Usuario implements java.io.Serializable {
     }
 
     public void removerFuncao(String role){
-        funcoes.removeIf(r -> r.getNome() == role);
+        funcoes.removeIf(r -> r.getNome().equals(role));
     }
 
     public UserDetails toUserDetails() {
