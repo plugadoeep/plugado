@@ -6,13 +6,21 @@
 package br.edu.fumep.entity;
 
 import java.util.Date;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  *
  * @author aluno
  */
-public class Notificacao {
-    
+@Entity
+@Table(name = "notificacao")
+public class Notificacao implements java.io.Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long Id;
     private Date dataNotificacao;
     private String descricaoNotificacao;

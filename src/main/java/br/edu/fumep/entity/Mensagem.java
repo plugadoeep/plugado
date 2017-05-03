@@ -6,13 +6,21 @@
 package br.edu.fumep.entity;
 
 import br.edu.fumep.entity.Aluno;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  *
  * @author aluno
  */
-public class Mensagem {
-    
+@Entity
+@Table(name = "mensagem")
+public class Mensagem implements java.io.Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private GrupoEstudo grupoEstudo;
     private Aluno aluno;

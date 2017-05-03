@@ -7,13 +7,22 @@ package br.edu.fumep.entity;
 
 import br.edu.fumep.entity.Aluno;
 import java.util.Date;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  *
  * @author aluno
  */
-public class Arquivo {
-    
+@Entity
+@Table(name = "arquivo")
+public class Arquivo implements java.io.Serializable {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private Mensagem mensagem;
     private GrupoEstudo grupoEstudo;
@@ -87,11 +96,4 @@ public class Arquivo {
         this.dataInclusao = dataInclusao;
     }
 
-   
-
-   
-
-   
-    
-    
 }

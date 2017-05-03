@@ -5,12 +5,21 @@
  */
 package br.edu.fumep.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 /**
  *
  * @author aluno
  */
-public class GrupoEstudoTag {
-    
+@Entity
+@Table(name = "grupo_estudo_tag")
+public class GrupoEstudoTag implements java.io.Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private GrupoEstudo grupoEstudo;
     private Tag tag;

@@ -19,7 +19,7 @@ import static java.util.stream.Collectors.toList;
 public class Usuario implements java.io.Serializable {
     private static final long serialVersionUID = -6113123348770067062L;
 
-	@Id
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String login;

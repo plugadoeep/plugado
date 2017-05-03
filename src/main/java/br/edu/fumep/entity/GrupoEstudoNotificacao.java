@@ -5,17 +5,25 @@
  */
 package br.edu.fumep.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 /**
  *
  * @author aluno
  */
-public class GrupoEstudoNotificacao {
-    
+@Entity
+@Table(name = "grupo_estudo_notificacao")
+public class GrupoEstudoNotificacao implements java.io.Serializable {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private Notificacao notificacao;
     private GrupoEstudo grupoEstudo;
-     
-    
 
     public Notificacao getNotificacao() {
         return notificacao;
@@ -41,8 +49,4 @@ public class GrupoEstudoNotificacao {
         this.id = id;
     }
 
-   
-     
-     
-    
 }

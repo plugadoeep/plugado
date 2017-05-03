@@ -5,12 +5,22 @@
  */
 package br.edu.fumep.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 /**
  *
  * @author aluno
  */
-public class Aluno {
-    
+@Entity
+@Table(name = "aluno")
+public class Aluno implements java.io.Serializable {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String nome;
     private String curso;
@@ -47,11 +57,5 @@ public class Aluno {
     public void setSemestre(String semestre) {
         this.semestre = semestre;
     }
-    
-    
 
-    
-    
-    
-    
 }
