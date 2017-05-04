@@ -1,16 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.edu.fumep.form;
 
-import br.edu.fumep.entity.*;
-import br.edu.fumep.entity.Aluno;
-
 /**
+ * Created by Leonardo Marchese on 02/05/2017.
  *
- * @author Leonardo Marchese
  */
 public class ControleUsuarioForm {
     

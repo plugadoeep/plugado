@@ -22,7 +22,7 @@ import javax.validation.Valid;
 public class UsuariosController {
     @RequestMapping(value = {"/registrar"}, method = RequestMethod.GET)
     public String register(Model model){
-        model.addAttribute("form", new UsuarioForm("arabasso"));
+        model.addAttribute("form", new UsuarioForm());
 
         return "usuarios/registrar";
     }

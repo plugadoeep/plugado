@@ -1,20 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.edu.fumep.entity;
 
-import java.util.Date;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.time.LocalDate;
 
 /**
+ * Created by arabasso on 03/05/2017.
  *
- * @author aluno
  */
 @Entity
 @Table(name = "notificacao")
@@ -22,7 +13,7 @@ public class Notificacao implements java.io.Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long Id;
-    private Date dataNotificacao;
+    private LocalDate dataNotificacao;
     private String descricaoNotificacao;
 
     public long getId() {
@@ -33,11 +24,11 @@ public class Notificacao implements java.io.Serializable {
         this.Id = Id;
     }
 
-    public Date getDataNotificacao() {
+    public LocalDate getDataNotificacao() {
         return dataNotificacao;
     }
 
-    public void setDataNotificacao(Date dataNotificacao) {
+    public void setDataNotificacao(LocalDate dataNotificacao) {
         this.dataNotificacao = dataNotificacao;
     }
 
@@ -48,7 +39,4 @@ public class Notificacao implements java.io.Serializable {
     public void setDescricaoNotificacao(String descricaoNotificacao) {
         this.descricaoNotificacao = descricaoNotificacao;
     }
-    
-    
-    
 }

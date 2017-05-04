@@ -1,21 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.edu.fumep.entity;
 
-import br.edu.fumep.entity.Aluno;
+import javax.persistence.*;
 import java.util.Date;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
 
 /**
+ * Created by arabasso on 03/05/2017.
  *
- * @author aluno
  */
 @Entity
 @Table(name = "arquivo")
@@ -24,8 +14,11 @@ public class Arquivo implements java.io.Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    @ManyToOne
     private Mensagem mensagem;
+    @ManyToOne
     private GrupoEstudo grupoEstudo;
+    @ManyToOne
     private Aluno aluno;
     private String nome;
     private Double tamanho;
@@ -95,5 +88,4 @@ public class Arquivo implements java.io.Serializable {
     public void setDataInclusao(Date dataInclusao) {
         this.dataInclusao = dataInclusao;
     }
-
 }

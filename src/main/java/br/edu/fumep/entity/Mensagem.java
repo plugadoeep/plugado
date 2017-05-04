@@ -1,20 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.edu.fumep.entity;
 
-import br.edu.fumep.entity.Aluno;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
+ * Created by arabasso on 03/05/2017.
  *
- * @author aluno
  */
 @Entity
 @Table(name = "mensagem")
@@ -22,7 +12,9 @@ public class Mensagem implements java.io.Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    @ManyToOne
     private GrupoEstudo grupoEstudo;
+    @ManyToOne
     private Aluno aluno;
     private String mensagem;
 
@@ -57,9 +49,4 @@ public class Mensagem implements java.io.Serializable {
     public void setMensagem(String mensagem) {
         this.mensagem = mensagem;
     }
-
-    
-    
-    
-    
 }

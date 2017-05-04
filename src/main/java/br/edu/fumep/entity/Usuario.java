@@ -11,14 +11,12 @@ import java.util.Set;
 import static java.util.stream.Collectors.toList;
 
 /**
- * Created by arabasso on 23/04/2017.
+ * Created by arabasso on 03/05/2017.
  *
  */
 @Entity
 @Table(name = "usuario")
 public class Usuario implements java.io.Serializable {
-    private static final long serialVersionUID = -6113123348770067062L;
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
