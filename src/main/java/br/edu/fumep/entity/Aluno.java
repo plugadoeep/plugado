@@ -16,6 +16,16 @@ public class Aluno implements java.io.Serializable {
     private String nome;
     private String curso;
     private String semestre;
+    @ManyToOne
+    private Usuario usuario;
+
+    protected Aluno(){
+    }
+
+    public Aluno(String nome, Usuario usuario) {
+        this.nome = nome;
+        this.usuario = usuario;
+    }
 
     public long getId() {
         return id;
@@ -47,5 +57,13 @@ public class Aluno implements java.io.Serializable {
 
     public void setSemestre(String semestre) {
         this.semestre = semestre;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 }

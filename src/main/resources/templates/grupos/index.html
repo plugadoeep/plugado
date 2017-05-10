@@ -2,4 +2,30 @@
          xmlns:th="http://www.thymeleaf.org"
          xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
     <h2>Grupos de estudo</h2>
+
+    <!--/*@thymesVar id="list" type="List<br.edu.fumep.entity.GrupoEstudo>"*/-->
+    <div th:each="grupo : ${list}">
+        <div>
+            <a th:href="@{'/grupos/editar/' + ${grupo.id}}" th:text="${grupo.nome}"></a>
+        </div>
+        <div>
+            <strong>Curso: </strong><span th:text="${grupo.curso}"></span>
+        </div>
+        <div>
+            <strong>Coordenador: </strong><span th:text="${grupo.coordenador}"></span>
+        </div>
+        <div>
+            <strong>Matéria: </strong><span th:text="${grupo.materia}"></span>
+        </div>
+        <div>
+            <strong>Professor: </strong><span th:text="${grupo.professor}"></span>
+        </div>
+        <div th:unless="${grupo.alunoEstaInserido(usuario.aluno)}">
+            <a th:href="@{'/grupos/ingressar/' + ${grupo.id}}" title="Ingressar">Sigin</a>
+        </div>
+    </div>
+
+    <div>
+        <a th:href="@{/grupos/criar}" title="Criar">Criar</a>
+    </div>
 </section>

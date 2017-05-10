@@ -1,5 +1,7 @@
 package br.edu.fumep.form;
 
+import br.edu.fumep.entity.GrupoEstudo;
+
 /**
  * Created by Leonardo Marchese on 02/05/2017.
  *
@@ -78,11 +80,16 @@ public class GrupoEstudoForm {
     public void setCoordenador(String coordenador) {
         this.coordenador = coordenador;
     }
-    
-    
 
-    
-    
-    
-    
+    public GrupoEstudoForm() {
+    }
+
+    public GrupoEstudoForm(GrupoEstudo grupoEstudo){
+        this.id = grupoEstudo.getId();
+        this.nome = grupoEstudo.getNome();
+        this.curso = grupoEstudo.getCurso();
+        this.coordenador = grupoEstudo.getCoordenador();
+        this.materia = grupoEstudo.getMateria();
+        this.professor = grupoEstudo.getProfessor();
+    }
 }

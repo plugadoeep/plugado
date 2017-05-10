@@ -25,17 +25,32 @@ public class Usuario implements java.io.Serializable {
     private boolean ativo;
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Funcao> funcoes;
+    @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Aluno aluno;
 
 	protected Usuario(){
     }
 
-    public Usuario(String login, String senha) {
+    public Usuario(String login) {
         this.login = login;
-        this.senha = senha;
         this.ativo = true;
         this.funcoes = new HashSet<>();
 
         adicionarFuncao("ROLE_USUARIO");
+    }
+
+    public Usuario(String login, String senha) {
+        this(login);
+
+        this.senha = senha;
+    }
+
+    public Aluno getAluno() {
+        return aluno;
+    }
+
+    public void setAluno(Aluno aluno) {
+        this.aluno = aluno;
     }
 
     public void adicionarFuncao(String name){

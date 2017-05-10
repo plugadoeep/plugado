@@ -13,10 +13,18 @@ public class GrupoEstudoAluno implements java.io.Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @ManyToOne
+    @OneToOne
     private GrupoEstudo grupoEstudo;
-    @ManyToOne
+    @OneToOne
     private Aluno aluno;
+
+    protected GrupoEstudoAluno() {
+    }
+
+    public GrupoEstudoAluno(GrupoEstudo grupoEstudo, Aluno aluno) {
+        this.grupoEstudo = grupoEstudo;
+        this.aluno = aluno;
+    }
 
     public long getId() {
         return id;

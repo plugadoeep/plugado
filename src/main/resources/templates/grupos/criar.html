@@ -1,0 +1,48 @@
+<section class="content" layout:decorator="layout" layout:fragment="content"
+         xmlns:th="http://www.thymeleaf.org"
+         xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+    <h2>Criar grupo de estudo</h2>
+    <!--/*@thymesVar id="form" type="br.edu.fumep.form.GrupoEstudoForm"*/-->
+    <form th:action="@{/grupos/criar}" th:object="${form}" method="post">
+        <ul th:if="${#fields.hasErrors('global')}">
+            <li th:each="err : ${#fields.errors('global')}" th:text="${err}">Input is incorrect</li>
+        </ul>
+
+        <fieldset>
+            <div>
+                <div><label th:for="*{nome}">Nome</label></div>
+                <div><input type="text" th:field="*{nome}" placeholder="Nome" /></div>
+                <div th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></div>
+            </div>
+
+            <div>
+                <div><label th:for="*{curso}">Curso</label></div>
+                <div><input type="text" th:field="*{curso}" placeholder="Curso" /></div>
+                <div th:if="${#fields.hasErrors('curso')}" th:errors="*{curso}"></div>
+            </div>
+
+            <div>
+                <div><label th:for="*{materia}">Materia</label></div>
+                <div><input type="text" th:field="*{materia}" placeholder="Materia" /></div>
+                <div th:if="${#fields.hasErrors('materia')}" th:errors="*{materia}"></div>
+            </div>
+
+            <div>
+                <div><label th:for="*{coordenador}">Coordenador</label></div>
+                <div><input type="text" th:field="*{coordenador}" placeholder="Coordenador" /></div>
+                <div th:if="${#fields.hasErrors('coordenador')}" th:errors="*{coordenador}"></div>
+            </div>
+
+            <div>
+                <div><label th:for="*{professor}">Professor</label></div>
+                <div><input type="text" th:field="*{professor}" placeholder="Professor" /></div>
+                <div th:if="${#fields.hasErrors('professor')}" th:errors="*{professor}"></div>
+            </div>
+
+            <div class="field text-align-center">
+                <button type="submit"><i class="fa fa-sign-in" aria-hidden="true"></i> <span>Save</span></button>
+                <a class="button" th:href="@{/grupos/index}"><i class="fa fa-close" aria-hidden="true"></i> <span>Cancel</span></a>
+            </div>
+        </fieldset>
+    </form>
+</section>

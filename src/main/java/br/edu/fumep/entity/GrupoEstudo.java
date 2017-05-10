@@ -1,6 +1,7 @@
 package br.edu.fumep.entity;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by arabasso on 03/05/2017.
@@ -20,6 +21,8 @@ public class GrupoEstudo implements java.io.Serializable {
     private String local;
     private String materia;
     private String coordenador;
+    @OneToMany(mappedBy = "grupoEstudo", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<GrupoEstudoAluno> gruposEstudoAluno;
 
     public long getId() {
         return id;
@@ -83,5 +86,17 @@ public class GrupoEstudo implements java.io.Serializable {
 
     public void setCoordenador(String coordenador) {
         this.coordenador = coordenador;
+    }
+
+    public List<GrupoEstudoAluno> getGruposEstudoAluno() {
+        return gruposEstudoAluno;
+    }
+
+    public void setGruposEstudoAluno(List<GrupoEstudoAluno> gruposEstudoAluno) {
+        this.gruposEstudoAluno = gruposEstudoAluno;
+    }
+
+    public boolean alunoEstaInserido(Aluno aluno) {
+        return gruposEstudoAluno.stream().anyMatch(a -> a.getAluno().getId() == aluno.getId());
     }
 }
