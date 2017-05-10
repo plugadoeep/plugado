@@ -1,0 +1,11 @@
+<section class="content" layout:decorator="layout" layout:fragment="content"
+         xmlns:th="http://www.thymeleaf.org"
+         xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+    <!--/*@thymesVar id="list" type="List<br.edu.fumep.entity.Mensagem>"*/-->
+    <div th:each="mensagem : ${list}">
+        <div>
+            <a th:href="@{'/grupos/editar/' + ${mensagem.grupoEstudo.id}}" th:text="${mensagem.grupoEstudo.nome}"></a>
+        </div>
+        <p th:text="${mensagem.mensagem}"></p>
+    </div>
+</section>

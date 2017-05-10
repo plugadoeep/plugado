@@ -3,6 +3,10 @@
          xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
     <h2>Grupos de estudo</h2>
 
+    <div class="text-align-right">
+        <a class="button" th:href="@{/grupos/criar}" title="Criar">Criar</a>
+    </div>
+
     <!--/*@thymesVar id="list" type="List<br.edu.fumep.entity.GrupoEstudo>"*/-->
     <div th:each="grupo : ${list}">
         <div>
@@ -23,9 +27,5 @@
         <div th:unless="${grupo.alunoEstaInserido(usuario.aluno)}">
             <a th:href="@{'/grupos/ingressar/' + ${grupo.id}}" title="Ingressar">Sigin</a>
         </div>
-    </div>
-
-    <div>
-        <a th:href="@{/grupos/criar}" title="Criar">Criar</a>
     </div>
 </section>

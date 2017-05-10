@@ -43,6 +43,17 @@ public class GruposController {
         return "grupos/index";
     }
 
+    @GetMapping(value = {"/mural"})
+    public String mural(Model model){
+        Usuario usuario = getUsuario();
+
+        List<Mensagem> list = mensagemRepositorio.mural(usuario.getAluno());
+
+        model.addAttribute("list", list);
+
+        return "grupos/mural";
+    }
+
     @GetMapping(value = {"/criar"})
     public String criar(Model model){
         model.addAttribute("form", new GrupoEstudoForm());

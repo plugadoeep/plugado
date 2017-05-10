@@ -67,7 +67,7 @@ nav ul li a:hover {
 }
 
 section#content {
-    padding: 2em 1em 2em 14em;
+    padding: 3em 1em 2em 14em;
 }
 
 footer {
@@ -200,4 +200,8 @@ button,
 
 .text-align-left {
     text-align: justify;
+}
+
+.fa {
+    width: 1em;
 }

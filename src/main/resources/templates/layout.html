@@ -26,10 +26,10 @@
         <nav>
             <ul>
                 <li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/user}" th:text="#{menu.link.users}">Users</a></li>
+                <li sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_USER')"><a th:href="@{/grupos/mural}"><i class="fa fa-home" aria-hidden="true"></i> <span th:text="#{menu.link.home}">Home</span></a></li>
                 <li sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_USER')"><a th:href="@{/grupos/index}"><i class="fa fa-users" aria-hidden="true"></i> <span th:text="#{menu.link.groups}">Groups</span></a></li>
-                <li><a th:href="@{/sobre}"><span th:text="#{menu.link.about}">About</span></a></li>
-                <li><a th:href="@{/contato}" th:text="#{menu.link.contact}">Contact</a></li>
-                <li sec:authorize="isAnonymous()"><a th:href="@{/login}" th:text="#{menu.link.login}">Login</a></li>
+                <li><a th:href="@{/sobre}"><i class="fa fa-info" aria-hidden="true"></i> <span th:text="#{menu.link.about}">About</span></a></li>
+                <li sec:authorize="isAnonymous()"><a th:href="@{/login}"><i class="fa fa-sign-out" aria-hidden="true"></i> <span th:text="#{menu.link.login}">Login</span></a></li>
                 <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}"><i class="fa fa-sign-out" aria-hidden="true"></i> <span th:text="#{menu.link.logout}">Logout</span></a></li>
             </ul>
         </nav>
