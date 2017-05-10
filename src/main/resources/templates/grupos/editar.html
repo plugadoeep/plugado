@@ -47,4 +47,30 @@
             </div>
         </fieldset>
     </form>
+
+    <form th:if="${grupoEstudo.alunoEstaInserido(usuario.aluno)}" th:action="@{/grupos/mensagem}" th:object="${formMensagem}" method="post">
+        <fieldset>
+            <input type="hidden" th:field="*{grupoEstudoId}" />
+            <input type="hidden" th:field="*{alunoId}" />
+
+            <div>
+                <div><label th:for="*{mensagem}">Mensagem</label></div>
+                <div><textarea type="text" th:field="*{mensagem}" placeholder="Mensagem" rows="4" class="width-1"></textarea></div>
+                <div th:if="${#fields.hasErrors('mensagem')}" th:errors="*{mensagem}"></div>
+            </div>
+
+            <div class="field text-align-center">
+                <button type="submit"><i class="fa fa-sign-in" aria-hidden="true"></i> <span>Enviar</span></button>
+            </div>
+        </fieldset>
+    </form>
+
+    <div th:switch="${mensagem.proprioAluno(usuario.aluno)}" th:each="mensagem : ${grupoEstudo.mensagens}">
+        <p th:case="${true}" class="text-align-right" th:text="${mensagem.mensagem}"></p>
+        <p th:case="${false}" class="text-align-left">
+            <strong th:text="${mensagem.aluno.nome}"></strong>
+            <br />
+            <span th:text="${mensagem.mensagem}"></span>
+        </p>
+    </div>
 </section>

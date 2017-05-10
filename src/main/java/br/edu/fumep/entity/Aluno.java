@@ -1,6 +1,7 @@
 package br.edu.fumep.entity;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by arabasso on 03/05/2017.
@@ -18,6 +19,8 @@ public class Aluno implements java.io.Serializable {
     private String semestre;
     @ManyToOne
     private Usuario usuario;
+    @OneToMany(mappedBy = "aluno", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Mensagem> mensagens;
 
     protected Aluno(){
     }
@@ -65,5 +68,13 @@ public class Aluno implements java.io.Serializable {
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
+    }
+
+    public List<Mensagem> getMensagens() {
+        return mensagens;
+    }
+
+    public void setMensagens(List<Mensagem> mensagens) {
+        this.mensagens = mensagens;
     }
 }

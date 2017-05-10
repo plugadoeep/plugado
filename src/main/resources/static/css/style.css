@@ -98,12 +98,14 @@ a:hover {
     text-decoration: none;
 }
 
-input {
+input,
+textarea {
     border: 1px solid #34302D;
     padding: 0.25em;
 }
 
-input:focus {
+input:focus,
+textarea:focus {
     border: 1px solid #5FA134;
     color: #5FA134;
 }
@@ -177,6 +179,7 @@ a.button {
 
 input,
 button,
+textarea,
 .button {
     -webkit-border-radius: 2px;
     -moz-border-radius: 2px;
@@ -189,4 +192,12 @@ button,
     border: 0 none;
     padding: 0.25em;
     color: #EFEFEF;
+}
+
+.text-align-right {
+    text-align: right;
+}
+
+.text-align-left {
+    text-align: justify;
 }

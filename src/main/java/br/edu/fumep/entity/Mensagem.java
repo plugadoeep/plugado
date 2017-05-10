@@ -18,6 +18,19 @@ public class Mensagem implements java.io.Serializable {
     private Aluno aluno;
     private String mensagem;
 
+    protected Mensagem() {
+    }
+
+    public Mensagem(GrupoEstudo grupoEstudo, Aluno aluno) {
+        this.grupoEstudo = grupoEstudo;
+        this.aluno = aluno;
+    }
+
+    public Mensagem(GrupoEstudo grupoEstudo, Aluno aluno, String mensagem) {
+        this(grupoEstudo, aluno);
+        this.mensagem = mensagem;
+    }
+
     public long getId() {
         return id;
     }
@@ -48,5 +61,9 @@ public class Mensagem implements java.io.Serializable {
 
     public void setMensagem(String mensagem) {
         this.mensagem = mensagem;
+    }
+
+    public boolean proprioAluno(Aluno aluno) {
+        return this.aluno.getId() == aluno.getId();
     }
 }

@@ -1,5 +1,8 @@
 package br.edu.fumep.form;
 
+import br.edu.fumep.entity.Aluno;
+import br.edu.fumep.entity.GrupoEstudo;
+
 /**
  * Created by Leonardo Marchese on 02/05/2017.
  *
@@ -10,6 +13,14 @@ public class MensagemForm {
     private long grupoEstudoId;
     private long alunoId;
     private String mensagem;
+
+    public MensagemForm() {
+    }
+
+    public MensagemForm(GrupoEstudo grupoEstudo, Aluno aluno) {
+        this.grupoEstudoId = grupoEstudo.getId();
+        this.alunoId = aluno.getId();
+    }
 
     public long getId() {
         return id;

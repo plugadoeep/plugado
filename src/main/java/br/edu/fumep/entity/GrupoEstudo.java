@@ -22,6 +22,9 @@ public class GrupoEstudo implements java.io.Serializable {
     private String materia;
     private String coordenador;
     @OneToMany(mappedBy = "grupoEstudo", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OrderBy("id desc")
+    private List<Mensagem> mensagens;
+    @OneToMany(mappedBy = "grupoEstudo", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<GrupoEstudoAluno> gruposEstudoAluno;
 
     public long getId() {
@@ -94,6 +97,14 @@ public class GrupoEstudo implements java.io.Serializable {
 
     public void setGruposEstudoAluno(List<GrupoEstudoAluno> gruposEstudoAluno) {
         this.gruposEstudoAluno = gruposEstudoAluno;
+    }
+
+    public List<Mensagem> getMensagens() {
+        return mensagens;
+    }
+
+    public void setMensagens(List<Mensagem> mensagens) {
+        this.mensagens = mensagens;
     }
 
     public boolean alunoEstaInserido(Aluno aluno) {

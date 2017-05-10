@@ -2,10 +2,13 @@ package br.edu.fumep.controller;
 
 import br.edu.fumep.entity.GrupoEstudo;
 import br.edu.fumep.entity.GrupoEstudoAluno;
+import br.edu.fumep.entity.Mensagem;
 import br.edu.fumep.entity.Usuario;
 import br.edu.fumep.form.GrupoEstudoForm;
+import br.edu.fumep.form.MensagemForm;
 import br.edu.fumep.repository.GrupoEstudoAlunoRepositorio;
 import br.edu.fumep.repository.GrupoEstudoRepositorio;
+import br.edu.fumep.repository.MensagemRepositorio;
 import br.edu.fumep.repository.UsuarioRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -78,9 +81,33 @@ public class GruposController {
             return "redirect:/grupos/index";
         }
 
+        model.addAttribute("grupoEstudo", grupoEstudo);
         model.addAttribute("form", new GrupoEstudoForm(grupoEstudo));
 
+        Usuario usuario = getUsuario();
+
+        model.addAttribute("usuario", usuario);
+        model.addAttribute("formMensagem", new MensagemForm(grupoEstudo, usuario.getAluno()));
+
         return "grupos/editar";
+    }
+
+    @Autowired
+    MensagemRepositorio mensagemRepositorio;
+
+    @PostMapping(value = {"/mensagem"})
+    public String mensagem(@Valid @ModelAttribute("form") MensagemForm form, BindingResult bindingResult){
+        if (bindingResult.hasErrors()){
+            return "redirect:/grupos/editar/" + form.getGrupoEstudoId();
+        }
+
+        GrupoEstudo grupoEstudo = grupoEstudoRepositorio.findOne(form.getGrupoEstudoId());
+
+        Mensagem mensagem = new Mensagem(grupoEstudo, getUsuario().getAluno(), form.getMensagem());
+
+        mensagemRepositorio.save(mensagem);
+
+        return "redirect:/grupos/editar/" + form.getGrupoEstudoId();
     }
 
     @Autowired
