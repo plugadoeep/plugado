@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.nullValue;
 import static org.junit.Assert.assertThat;
 
 /**
@@ -54,5 +55,21 @@ public class MensagemTests {
         a.setId(2);
 
         assertThat(mensagem.proprioAluno(a), is(false));
+    }
+
+    @Test
+    public void naoTemArquivo() {
+        Mensagem mensagem = new Mensagem(grupoEstudo, aluno);
+
+        assertThat(mensagem.temArquivo(), is(false));
+    }
+
+    @Test
+    public void temArquivo() {
+        Mensagem mensagem = new Mensagem(grupoEstudo, aluno);
+
+        mensagem.setArquivo(new Arquivo(mensagem));
+
+        assertThat(mensagem.temArquivo(), is(true));
     }
 }

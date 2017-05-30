@@ -2,6 +2,7 @@ package br.edu.fumep.form;
 
 import br.edu.fumep.entity.Aluno;
 import br.edu.fumep.entity.GrupoEstudo;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * Created by Leonardo Marchese on 02/05/2017.
@@ -13,6 +14,7 @@ public class MensagemForm {
     private long grupoEstudoId;
     private long alunoId;
     private String mensagem;
+    private MultipartFile arquivo;
 
     public MensagemForm() {
     }
@@ -54,12 +56,11 @@ public class MensagemForm {
         this.mensagem = mensagem;
     }
 
-   
+    public MultipartFile getArquivo() {
+        return arquivo;
+    }
 
-   
-
-    
-    
-    
-    
+    public void setArquivo(MultipartFile arquivo) {
+        this.arquivo = arquivo;
+    }
 }

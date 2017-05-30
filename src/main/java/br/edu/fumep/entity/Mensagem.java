@@ -17,6 +17,8 @@ public class Mensagem implements java.io.Serializable {
     @ManyToOne
     private Aluno aluno;
     private String mensagem;
+    @OneToOne(mappedBy = "mensagem")
+    private Arquivo arquivo;
 
     protected Mensagem() {
     }
@@ -65,5 +67,17 @@ public class Mensagem implements java.io.Serializable {
 
     public boolean proprioAluno(Aluno aluno) {
         return this.aluno.getId() == aluno.getId();
+    }
+
+    public Arquivo getArquivo() {
+        return arquivo;
+    }
+
+    public void setArquivo(Arquivo arquivo) {
+        this.arquivo = arquivo;
+    }
+
+    public boolean temArquivo() {
+        return this.getArquivo() != null;
     }
 }

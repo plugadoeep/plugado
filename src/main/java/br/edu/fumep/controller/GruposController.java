@@ -1,15 +1,10 @@
 package br.edu.fumep.controller;
 
-import br.edu.fumep.entity.GrupoEstudo;
-import br.edu.fumep.entity.GrupoEstudoAluno;
-import br.edu.fumep.entity.Mensagem;
-import br.edu.fumep.entity.Usuario;
+import br.edu.fumep.entity.*;
 import br.edu.fumep.form.GrupoEstudoForm;
 import br.edu.fumep.form.MensagemForm;
-import br.edu.fumep.repository.GrupoEstudoAlunoRepositorio;
-import br.edu.fumep.repository.GrupoEstudoRepositorio;
-import br.edu.fumep.repository.MensagemRepositorio;
-import br.edu.fumep.repository.UsuarioRepositorio;
+import br.edu.fumep.repository.*;
+import br.edu.fumep.service.storage.StorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
@@ -19,6 +14,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.io.File;
+import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -104,7 +102,10 @@ public class GruposController {
     }
 
     @Autowired
-    MensagemRepositorio mensagemRepositorio;
+    private MensagemRepositorio mensagemRepositorio;
+
+    @Autowired
+    private StorageService storageService;
 
     @PostMapping(value = {"/mensagem"})
     public String mensagem(@Valid @ModelAttribute("form") MensagemForm form, BindingResult bindingResult){
@@ -117,6 +118,8 @@ public class GruposController {
         Mensagem mensagem = new Mensagem(grupoEstudo, getUsuario().getAluno(), form.getMensagem());
 
         mensagemRepositorio.save(mensagem);
+
+        storageService.store(mensagem, form.getArquivo());
 
         return "redirect:/grupos/editar/" + form.getGrupoEstudoId();
     }

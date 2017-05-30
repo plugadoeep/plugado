@@ -6,6 +6,9 @@
         <div>
             <a th:href="@{'/grupos/editar/' + ${mensagem.grupoEstudo.id}}" th:text="${mensagem.grupoEstudo.nome}"></a>
         </div>
-        <p th:text="${mensagem.mensagem}"></p>
+        <p>
+            <div th:text="${mensagem.mensagem}"></div>
+            <strong>Enviado por <span th:text="${mensagem.aluno.nome}"></span></strong>
+        </p>
     </div>
 </section>

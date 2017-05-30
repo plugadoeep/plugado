@@ -1,6 +1,7 @@
 package br.edu.fumep.entity;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 
 /**
@@ -23,7 +24,16 @@ public class Arquivo implements java.io.Serializable {
     private String nome;
     private Double tamanho;
     private String formato;
-    private Date dataInclusao;
+    private LocalDate dataInclusao;
+
+    protected Arquivo() {
+    }
+
+    public Arquivo(Mensagem mensagem) {
+        this.mensagem = mensagem;
+        this.aluno = mensagem.getAluno();
+        this.grupoEstudo = mensagem.getGrupoEstudo();
+    }
 
     public long getId() {
         return id;
@@ -81,11 +91,11 @@ public class Arquivo implements java.io.Serializable {
         this.formato = formato;
     }
 
-    public Date getDataInclusao() {
+    public LocalDate getDataInclusao() {
         return dataInclusao;
     }
 
-    public void setDataInclusao(Date dataInclusao) {
+    public void setDataInclusao(LocalDate dataInclusao) {
         this.dataInclusao = dataInclusao;
     }
 }
