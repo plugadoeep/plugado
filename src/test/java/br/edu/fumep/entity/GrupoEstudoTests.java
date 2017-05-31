@@ -42,4 +42,9 @@ public class GrupoEstudoTests {
     public void alunoEstaInseridoGrupo() {
         assertThat(grupoEstudo.alunoEstaInserido(aluno), is(true));
     }
+
+    @Test
+    public void alunoNuloEstaInseridoGrupo() {
+        assertThat(grupoEstudo.alunoEstaInserido(null), is(false));
+    }
 }

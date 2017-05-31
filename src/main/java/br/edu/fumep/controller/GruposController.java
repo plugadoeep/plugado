@@ -6,6 +6,7 @@ import br.edu.fumep.form.MensagemForm;
 import br.edu.fumep.repository.*;
 import br.edu.fumep.service.storage.StorageService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
@@ -31,7 +32,7 @@ public class GruposController {
     @Autowired
     private GrupoEstudoRepositorio grupoEstudoRepositorio;
 
-    @GetMapping(value = {"/index"})
+    @GetMapping(value = {"", "/index"})
     public String index(Model model){
         List<GrupoEstudo> list = grupoEstudoRepositorio.findAll();
 
@@ -41,6 +42,7 @@ public class GruposController {
         return "grupos/index";
     }
 
+    @Secured("ROLE_USER")
     @GetMapping(value = {"/mural"})
     public String mural(Model model){
         Usuario usuario = getUsuario();

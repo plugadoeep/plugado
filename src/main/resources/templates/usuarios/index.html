@@ -1,0 +1,27 @@
+<section layout:decorator="layout" layout:fragment="content"
+         xmlns:th="http://www.thymeleaf.org"
+         xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+    <h2>User</h2>
+
+    <table>
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Username</th>
+            <th>Enabled</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+        </thead>
+
+        <tbody>
+            <tr th:each="u : ${list}">
+                <td th:text="${u.id}"></td>
+                <td th:text="${u.login}">Login</td>
+                <td th:text="${u.ativo}">Active</td>
+                <td><a th:href="@{/usuarios/editar(id=${u.id})}">Edit</a></td>
+                <td><a th:href="@{/usuarios/excluir(id=${u.id})}">Delete</a></td>
+            </tr>
+        </tbody>
+    </table>
+</section>

@@ -1,0 +1,8 @@
+<section layout:decorator="layout" layout:fragment="content"
+         xmlns:th="http://www.thymeleaf.org"
+         xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+    <h2>Error</h2>
+
+    <h1 th:text="${status}">404</h1>
+    <p th:utext="${error}">Error</p>
+</section>

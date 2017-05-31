@@ -108,6 +108,6 @@ public class GrupoEstudo implements java.io.Serializable {
     }
 
     public boolean alunoEstaInserido(Aluno aluno) {
-        return gruposEstudoAluno.stream().anyMatch(a -> a.getAluno().getId() == aluno.getId());
+        return aluno != null && gruposEstudoAluno.stream().anyMatch(a -> a.getAluno().getId() == aluno.getId());
     }
 }

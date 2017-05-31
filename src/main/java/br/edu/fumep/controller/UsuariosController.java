@@ -2,15 +2,13 @@ package br.edu.fumep.controller;
 
 import br.edu.fumep.entity.Usuario;
 import br.edu.fumep.form.UsuarioForm;
-import br.edu.fumep.service.UsuarioService;
+import br.edu.fumep.repository.UsuarioRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -21,15 +19,15 @@ import javax.validation.Valid;
 @Controller
 @RequestMapping("/usuarios")
 public class UsuariosController {
-    @RequestMapping(value = {"/registrar"}, method = RequestMethod.GET)
+    @Autowired
+    UsuarioRepositorio usuarioRepositorio;
+
+    @GetMapping(value = {"/registrar"})
     public String register(Model model){
         model.addAttribute("form", new UsuarioForm());
 
         return "usuarios/registrar";
     }
-
-    @Autowired
-    UsuarioService usuarioService;
 
     @PostMapping(value = {"/registrar"})
     public String register(@Valid @ModelAttribute("form") UsuarioForm form, BindingResult bindingResult){
@@ -41,7 +39,7 @@ public class UsuariosController {
             try{
                 Usuario usuario = new Usuario(form.getLogin(), form.getSenha());
 
-                usuarioService.salvar(usuario);
+                usuarioRepositorio.save(usuario);
             }
 
             catch(Exception e){
@@ -51,5 +49,49 @@ public class UsuariosController {
         }
 
         return "redirect:/login";
+    }
+
+    @Secured("ROLE_ADMIN")
+    @GetMapping(value = {"", "/index"})
+    public String index(Model model){
+        model.addAttribute("list", usuarioRepositorio.findAll());
+
+        return "usuarios/index";
+    }
+
+    @Secured("ROLE_ADMIN")
+    @GetMapping(value = {"/editar"})
+    public String editar(long id, Model model){
+        UsuarioForm form = new UsuarioForm(usuarioRepositorio.findOne(id));
+
+        model.addAttribute("form", form);
+
+        return "/usuarios/editar";
+    }
+
+    @Secured("ROLE_ADMIN")
+    @PostMapping(value = {"/editar"})
+    public String editar(@Valid UsuarioForm form, BindingResult bindingResult){
+        if (bindingResult.hasErrors()){
+            return "usuarios/editar";
+        }
+
+        Usuario u = usuarioRepositorio.findOne(form.getId());
+
+        u.setLogin(form.getLogin());
+        u.setSenha(form.getSenha());
+        u.setAtivo(form.isAtivo());
+
+        usuarioRepositorio.save(u);
+
+        return "redirect:/usuarios/index";
+    }
+
+    @Secured("ROLE_ADMIN")
+    @GetMapping(value = {"/excluir"})
+    public String excluir(long id){
+        usuarioRepositorio.delete(id);
+
+        return "redirect:/usuarios/index";
     }
 }
