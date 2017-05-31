@@ -132,6 +132,9 @@ public class GruposController {
     @Autowired
     GrupoEstudoAlunoRepositorio grupoEstudoAlunoRepositorio;
 
+    @Autowired
+    ControleUsuarioRepositorio controleUsuarioRepositorio;
+
     @GetMapping(value = {"/ingressar/{id}"})
     public String ingressar(@PathVariable long id){
         GrupoEstudo grupoEstudo = grupoEstudoRepositorio.findOne(id);
@@ -141,6 +144,10 @@ public class GruposController {
         GrupoEstudoAluno grupoEstudoAluno = new GrupoEstudoAluno(grupoEstudo, usuario.getAluno());
 
         grupoEstudoAlunoRepositorio.save(grupoEstudoAluno);
+
+        ControleUsuario controleUsuario = new ControleUsuario(grupoEstudo, usuario.getAluno(), 1);
+
+        controleUsuarioRepositorio.save(controleUsuario);
 
         return "redirect:/grupos/index";
     }

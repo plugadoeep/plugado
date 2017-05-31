@@ -21,6 +21,8 @@ public class Aluno implements java.io.Serializable {
     private Usuario usuario;
     @OneToMany(mappedBy = "aluno", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Mensagem> mensagens;
+    @OneToOne(mappedBy = "aluno")
+    private ControleUsuario controleUsuario;
 
     protected Aluno(){
     }
@@ -76,5 +78,17 @@ public class Aluno implements java.io.Serializable {
 
     public void setMensagens(List<Mensagem> mensagens) {
         this.mensagens = mensagens;
+    }
+
+    public ControleUsuario getControleUsuario() {
+        return controleUsuario;
+    }
+
+    public void setControleUsuario(ControleUsuario controleUsuario) {
+        this.controleUsuario = controleUsuario;
+    }
+
+    public int nivelControle() {
+        return controleUsuario == null ? -1 : (int)controleUsuario.getNivel();
     }
 }

@@ -26,6 +26,8 @@ public class GrupoEstudo implements java.io.Serializable {
     private List<Mensagem> mensagens;
     @OneToMany(mappedBy = "grupoEstudo", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<GrupoEstudoAluno> gruposEstudoAluno;
+    @OneToMany(mappedBy = "grupoEstudo", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<GrupoEstudoTag> gruposEstudoTag;
 
     public long getId() {
         return id;
@@ -109,5 +111,13 @@ public class GrupoEstudo implements java.io.Serializable {
 
     public boolean alunoEstaInserido(Aluno aluno) {
         return aluno != null && gruposEstudoAluno.stream().anyMatch(a -> a.getAluno().getId() == aluno.getId());
+    }
+
+    public List<GrupoEstudoTag> getGruposEstudoTag() {
+        return gruposEstudoTag;
+    }
+
+    public void setGruposEstudoTag(List<GrupoEstudoTag> gruposEstudoTag) {
+        this.gruposEstudoTag = gruposEstudoTag;
     }
 }

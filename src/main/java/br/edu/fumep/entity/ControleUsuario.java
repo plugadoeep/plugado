@@ -17,7 +17,16 @@ public class ControleUsuario implements java.io.Serializable {
     private GrupoEstudo grupoEstudo;
     @ManyToOne
     private Aluno aluno;
-    private long nivel;
+    private int nivel;
+
+    protected ControleUsuario() {
+    }
+
+    public ControleUsuario(GrupoEstudo grupoEstudo, Aluno aluno, int nivel) {
+        this.grupoEstudo = grupoEstudo;
+        this.aluno = aluno;
+        this.nivel = nivel;
+    }
 
     public long getId() {
         return id;
@@ -43,11 +52,11 @@ public class ControleUsuario implements java.io.Serializable {
         this.aluno = aluno;
     }
 
-    public long getNivel() {
+    public int getNivel() {
         return nivel;
     }
 
-    public void setNivel(long nivel) {
+    public void setNivel(int nivel) {
         this.nivel = nivel;
     }
 }

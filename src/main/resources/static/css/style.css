@@ -4,13 +4,13 @@
     box-sizing: border-box;
 }
 
-section#content,
-nav {
-    -webkit-transition: all 0.7s ease-out;
-    -moz-transition: all 0.7s ease-out;
-    -o-transition: all 0.7s ease-out;
-    transition: all 0.7s ease-out;
-}
+/*section#content,*/
+/*nav {*/
+/*-webkit-transition: all 0.7s ease-out;*/
+/*-moz-transition: all 0.7s ease-out;*/
+/*-o-transition: all 0.7s ease-out;*/
+/*transition: all 0.7s ease-out;*/
+/*}*/
 
 html {
     height: 100%;
@@ -27,7 +27,7 @@ body {
 
 header {
     position: fixed;
-    z-index: 1;
+    z-index: 2;
     top: 0;
     left: 0;
     right: 0;
@@ -37,6 +37,14 @@ header {
 
     background-color: #5FA134;
     color: #EFEFEF;
+}
+
+header .logo {
+    float: left;
+}
+
+header .logo img {
+    height: 3.5em;
 }
 
 header h1 {
@@ -54,7 +62,7 @@ header h1::after {
 
 nav {
     position: fixed;
-    z-index: 0;
+    z-index: 1;
     left: 0;
     top: 0;
     bottom: 0;
@@ -171,6 +179,10 @@ form fieldset {
     text-align: center;
 }
 
+.float-left {
+    float: left;
+}
+
 a.button {
     text-decoration: none;
 }
@@ -204,16 +216,44 @@ button,
     width: 1em;
 }
 
+.menu {
+    float : left;
+    display: none;
+}
+
+.menu a {
+    line-height: 0;
+    color: #FFF;
+    display: block;
+    background: #34302D;
+    padding: 0.2em;
+    margin: 0.2em;
+    text-align: center;
+}
+
 @media (min-width: 48em) {
 
 }
 
 @media (max-width: 48em) {
     nav {
-        margin-left: -13em;
+        left: -13em;
     }
 
     section#content {
         padding-left: 1em;
     }
+
+    .menu {
+        display: block;
+    }
+}
+
+.responsive nav {
+    left: 0 !important;
+}
+
+.responsive section#content {
+    position: relative;
+    padding-left: 14em !important;
 }
