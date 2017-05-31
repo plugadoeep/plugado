@@ -17,6 +17,7 @@ public class GrupoEstudoAluno implements java.io.Serializable {
     private GrupoEstudo grupoEstudo;
     @OneToOne
     private Aluno aluno;
+    private boolean admin;
 
     protected GrupoEstudoAluno() {
     }
@@ -24,6 +25,12 @@ public class GrupoEstudoAluno implements java.io.Serializable {
     public GrupoEstudoAluno(GrupoEstudo grupoEstudo, Aluno aluno) {
         this.grupoEstudo = grupoEstudo;
         this.aluno = aluno;
+    }
+
+    public GrupoEstudoAluno(GrupoEstudo grupoEstudo, Aluno aluno, boolean admin) {
+        this(grupoEstudo, aluno);
+
+        this.admin = admin;
     }
 
     public long getId() {
@@ -48,5 +55,13 @@ public class GrupoEstudoAluno implements java.io.Serializable {
 
     public void setAluno(Aluno aluno) {
         this.aluno = aluno;
+    }
+
+    public boolean isAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(boolean admin) {
+        this.admin = admin;
     }
 }

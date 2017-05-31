@@ -13,6 +13,10 @@ INSERT INTO aluno (nome, curso, semestre, usuario_id) VALUES ('Maraline Bedran',
 INSERT INTO aluno (nome, curso, semestre, usuario_id) VALUES ('Leonardo Marchese', 'Ciência da Computação', '7º Semestre', 4);
 INSERT INTO aluno (nome, curso, semestre, usuario_id) VALUES ('Mateus Nunes', 'Ciência da Computação', '7º Semestre', 5);
 INSERT INTO grupo_estudo (nome, curso, coordenador, materia, professor) VALUES ('Amigos', 'Ciência da Computação', 'Clerivaldo Roccia', 'Engenharia de Software II', 'Luis Camolesi');
+INSERT INTO grupo_estudo_aluno (aluno_id, grupo_estudo_id, admin) VALUES (1, 1, 1);
+INSERT INTO grupo_estudo_aluno (aluno_id, grupo_estudo_id, admin) VALUES (2, 1, 0);
+INSERT INTO grupo_estudo_aluno (aluno_id, grupo_estudo_id, admin) VALUES (3, 1, 0);
+INSERT INTO grupo_estudo_aluno (aluno_id, grupo_estudo_id, admin) VALUES (4, 1, 0);
 INSERT INTO mensagem (mensagem, aluno_id, grupo_estudo_id) VALUES ("Alguém sabe a data da P1?", 1, 1);
 INSERT INTO mensagem (mensagem, aluno_id, grupo_estudo_id) VALUES ("Será dia 1 ou dia 10?", 1, 1);
 INSERT INTO mensagem (mensagem, aluno_id, grupo_estudo_id) VALUES ("Parece que vai ser dia 10...", 2, 1);
