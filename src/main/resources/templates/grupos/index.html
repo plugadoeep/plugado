@@ -8,7 +8,7 @@
     </div>
 
     <!--/*@thymesVar id="list" type="List<br.edu.fumep.entity.GrupoEstudo>"*/-->
-    <div th:each="grupo : ${list}">
+    <div th:each="grupo : ${list}" class="margin-bottom-1">
         <div>
             <a th:href="@{'/grupos/editar/' + ${grupo.id}}" th:text="${grupo.nome}"></a>
         </div>

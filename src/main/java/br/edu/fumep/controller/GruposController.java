@@ -3,6 +3,7 @@ package br.edu.fumep.controller;
 import br.edu.fumep.entity.*;
 import br.edu.fumep.form.GrupoEstudoForm;
 import br.edu.fumep.form.MensagemForm;
+import br.edu.fumep.form.TagForm;
 import br.edu.fumep.repository.*;
 import br.edu.fumep.service.storage.StorageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,10 @@ import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * Created by arabasso on 23/04/2017.
@@ -77,9 +81,15 @@ public class GruposController {
 
         grupoEstudo.setGruposEstudoAluno(new ArrayList<>());
 
-        grupoEstudo.getGruposEstudoAluno().add(new GrupoEstudoAluno(grupoEstudo, getUsuario().getAluno()));
+        Usuario usuario = getUsuario();
+
+        grupoEstudo.getGruposEstudoAluno().add(new GrupoEstudoAluno(grupoEstudo, usuario.getAluno()));
 
         grupoEstudoRepositorio.save(grupoEstudo);
+
+        ControleUsuario controleUsuario = new ControleUsuario(grupoEstudo, usuario.getAluno(), 0);
+
+        controleUsuarioRepositorio.save(controleUsuario);
 
         return "redirect:/grupos/index";
     }
@@ -158,5 +168,48 @@ public class GruposController {
         Usuario usuario = usuarioRepositorio.findByLogin(userDetails.getUsername()).get();
 
         return usuario;
+    }
+
+    @Autowired
+    GrupoEstudoTagRepositorio grupoEstudoTagRepositorio;
+
+    @GetMapping(value = {"/tags"})
+    public @ResponseBody List<TagForm> tags(long id) {
+        List<GrupoEstudoTag> tags = grupoEstudoTagRepositorio.findByGrupoEstudoId(id);
+
+        return tags.stream().map(TagForm::new).collect(Collectors.toList());
+    }
+
+    @Autowired
+    TagRepositorio tagRepositorio;
+
+    @GetMapping("/criarTag")
+    public @ResponseBody boolean criarTag(long grupoEstudo, String descricao) {
+        Tag tag = tagRepositorio.findByDescricao(descricao);
+
+        if (tag == null){
+            tag = new Tag(descricao);
+
+            tagRepositorio.save(tag);
+        }
+
+        GrupoEstudoTag grupoEstudoTag = new GrupoEstudoTag();
+
+        grupoEstudoTag.setGrupoEstudo(grupoEstudoRepositorio.findOne(grupoEstudo));
+        grupoEstudoTag.setTag(tag);
+
+        grupoEstudoTagRepositorio.save(grupoEstudoTag);
+
+        return true;
+    }
+
+    @GetMapping("/excluirTag")
+    public @ResponseBody boolean excluirTag(long grupoEstudo, String descricao) {
+        Optional<GrupoEstudoTag> tag = grupoEstudoTagRepositorio.findByGrupoEstudoIdAndTagDescricao(grupoEstudo, descricao);
+
+        if (tag.isPresent())
+            grupoEstudoTagRepositorio.delete(tag.get());
+
+        return true;
     }
 }

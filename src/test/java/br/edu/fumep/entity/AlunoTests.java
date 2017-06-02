@@ -4,6 +4,9 @@ import org.junit.Before;
 import org.junit.Test;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.junit.Assert.assertThat;
@@ -29,13 +32,19 @@ public class AlunoTests {
 
     @Test
     public void nivelControle() {
-        assertThat(aluno.nivelControle(), is(-1));
+        assertThat(aluno.nivelControle(null), is(-1));
     }
 
     @Test
     public void nivelControleZero() {
-        aluno.setControleUsuario(new ControleUsuario(new GrupoEstudo(), aluno, 0));
+        GrupoEstudo grupoEstudo = new GrupoEstudo();
 
-        assertThat(aluno.nivelControle(), is(0));
+        grupoEstudo.setId(1L);
+
+        aluno.setControlesUsuario(new ArrayList<ControleUsuario>());
+
+        aluno.getControlesUsuario().add(new ControleUsuario(grupoEstudo, aluno, 0));
+
+        assertThat(aluno.nivelControle(grupoEstudo), is(0));
     }
 }

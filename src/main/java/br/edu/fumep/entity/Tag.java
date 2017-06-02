@@ -29,4 +29,11 @@ public class Tag implements java.io.Serializable {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
+
+    protected Tag() {
+    }
+
+    public Tag(String descricao) {
+        this.descricao = descricao;
+    }
 }

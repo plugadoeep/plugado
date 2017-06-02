@@ -2,6 +2,7 @@ package br.edu.fumep.entity;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Created by arabasso on 03/05/2017.
@@ -21,8 +22,8 @@ public class Aluno implements java.io.Serializable {
     private Usuario usuario;
     @OneToMany(mappedBy = "aluno", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Mensagem> mensagens;
-    @OneToOne(mappedBy = "aluno")
-    private ControleUsuario controleUsuario;
+    @OneToMany(mappedBy = "aluno", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<ControleUsuario> controlesUsuario;
 
     protected Aluno(){
     }
@@ -80,15 +81,21 @@ public class Aluno implements java.io.Serializable {
         this.mensagens = mensagens;
     }
 
-    public ControleUsuario getControleUsuario() {
-        return controleUsuario;
+    public List<ControleUsuario> getControlesUsuario() {
+        return controlesUsuario;
     }
 
-    public void setControleUsuario(ControleUsuario controleUsuario) {
-        this.controleUsuario = controleUsuario;
+    public void setControlesUsuario(List<ControleUsuario> controlesUsuario) {
+        this.controlesUsuario = controlesUsuario;
     }
 
-    public int nivelControle() {
-        return controleUsuario == null ? -1 : (int)controleUsuario.getNivel();
+    public int nivelControle(GrupoEstudo grupoEstudo) {
+        if (grupoEstudo == null || getControlesUsuario().isEmpty()) return -1;
+
+        Optional<ControleUsuario> controleUsuario = getControlesUsuario().stream().filter(a -> a.getGrupoEstudo().getId() == grupoEstudo.getId()).findAny();
+
+        if (!controleUsuario.isPresent()) return -1;
+
+        return controleUsuario.get().getNivel();
     }
 }

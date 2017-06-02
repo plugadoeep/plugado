@@ -3,12 +3,15 @@
          xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
     <h2><i class="fa fa-comments" aria-hidden="true"></i> <span>Mural</span></h2>
     <!--/*@thymesVar id="list" type="List<br.edu.fumep.entity.Mensagem>"*/-->
-    <div th:each="mensagem : ${list}">
+    <div th:each="mensagem : ${list}" class="margin-bottom-1">
         <div>
             <a th:href="@{'/grupos/editar/' + ${mensagem.grupoEstudo.id}}" th:text="${mensagem.grupoEstudo.nome}"></a>
         </div>
         <p>
             <div th:text="${mensagem.mensagem}"></div>
+            <div th:if="${mensagem.temArquivo()}">
+                <a th:href="@{'/files/' + ${mensagem.arquivo.nome}}" th:text="${mensagem.arquivo.nome}"></a>
+            </div>
             <strong>Enviado por <span th:text="${mensagem.aluno.nome}"></span></strong>
         </p>
     </div>

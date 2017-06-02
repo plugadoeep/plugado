@@ -40,7 +40,7 @@ public class FileSystemStorageService implements StorageService {
     public void store(Mensagem mensagem, MultipartFile file) {
         try {
             if (file.isEmpty()) {
-                throw new StorageException("Failed to store empty file " + file.getOriginalFilename());
+                return;
             }
 
             String name = file.getOriginalFilename();
