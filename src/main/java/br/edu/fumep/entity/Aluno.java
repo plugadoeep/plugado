@@ -1,5 +1,7 @@
 package br.edu.fumep.entity;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 import javax.persistence.*;
 import java.util.List;
 import java.util.Optional;
@@ -15,6 +17,7 @@ public class Aluno implements java.io.Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    @NotBlank
     private String nome;
     private String curso;
     private String semestre;

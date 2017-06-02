@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.junit.Assert.assertThat;
 
@@ -25,5 +26,34 @@ public class UsuarioTests {
         UserDetails ud = usuario.toUserDetails();
 
         assertThat(ud, notNullValue());
+    }
+
+    @Test
+    public void temFuncao() {
+        usuario.adicionarFuncao("ROLE_ADMIN");
+
+        assertThat(usuario.temFuncao("ROLE_ADMIN"), is(true));
+    }
+
+    @Test
+    public void temAluno() {
+        assertThat(usuario.temAluno(), is(true));
+    }
+
+    @Test
+    public void naoTemFuncao() {
+        assertThat(usuario.temFuncao("ROLE_ADMIN"), is(false));
+    }
+
+    @Test
+    public void ehAdministrador() {
+        usuario.adicionarFuncao("ROLE_ADMIN");
+
+        assertThat(usuario.ehAdmin(), is(true));
+    }
+
+    @Test
+    public void naoEhAdministrador() {
+        assertThat(usuario.ehAdmin(), is(false));
     }
 }

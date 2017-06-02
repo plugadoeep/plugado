@@ -1,7 +1,10 @@
 package br.edu.fumep.entity;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 import javax.persistence.*;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by arabasso on 03/05/2017.
@@ -14,6 +17,7 @@ public class GrupoEstudo implements java.io.Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    @NotBlank
     private String nome;
     private String professor;
     private String livro;
@@ -28,6 +32,16 @@ public class GrupoEstudo implements java.io.Serializable {
     private List<GrupoEstudoAluno> gruposEstudoAluno;
     @OneToMany(mappedBy = "grupoEstudo", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<GrupoEstudoTag> gruposEstudoTag;
+    @OneToMany(mappedBy = "grupoEstudo", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<ControleUsuario> controleUsuarios;
+
+    public List<ControleUsuario> getControleUsuarios() {
+        return controleUsuarios;
+    }
+
+    public void setControleUsuarios(List<ControleUsuario> controleUsuarios) {
+        this.controleUsuarios = controleUsuarios;
+    }
 
     public long getId() {
         return id;
@@ -119,5 +133,17 @@ public class GrupoEstudo implements java.io.Serializable {
 
     public void setGruposEstudoTag(List<GrupoEstudoTag> gruposEstudoTag) {
         this.gruposEstudoTag = gruposEstudoTag;
+    }
+
+    public String getTags() {
+        if (!temTags()) return "";
+
+        List<String> strings = getGruposEstudoTag().stream().map(m -> m.getTag().getDescricao()).collect(Collectors.toList());
+
+        return String.join(", ", strings);
+    }
+
+    public boolean temTags() {
+        return getGruposEstudoTag() != null && !getGruposEstudoTag().isEmpty();
     }
 }

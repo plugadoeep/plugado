@@ -1,5 +1,7 @@
 package br.edu.fumep.entity;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Date;
@@ -21,6 +23,7 @@ public class Arquivo implements java.io.Serializable {
     private GrupoEstudo grupoEstudo;
     @ManyToOne
     private Aluno aluno;
+    @NotBlank
     private String nome;
     private Double tamanho;
     private String formato;

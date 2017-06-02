@@ -1,6 +1,7 @@
 package br.edu.fumep.entity;
 
 import br.edu.fumep.config.RoleGrantedAuthority;
+import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -20,7 +21,9 @@ public class Usuario implements java.io.Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    @NotBlank
     private String login;
+    @NotBlank
     private String senha;
     private boolean ativo;
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -36,13 +39,19 @@ public class Usuario implements java.io.Serializable {
         this.ativo = true;
         this.funcoes = new HashSet<>();
 
-        adicionarFuncao("ROLE_USUARIO");
+        adicionarFuncao("ROLE_USER");
     }
 
     public Usuario(String login, String senha) {
         this(login);
 
         this.senha = senha;
+    }
+
+    public Usuario(String nome, String login, String senha) {
+        this(login, senha);
+
+        aluno = new Aluno(nome, this);
     }
 
     public long getId() {
@@ -81,6 +90,14 @@ public class Usuario implements java.io.Serializable {
         return aluno;
     }
 
+    public Set<Funcao> getFuncoes() {
+        return funcoes;
+    }
+
+    public void setFuncoes(Set<Funcao> funcoes) {
+        this.funcoes = funcoes;
+    }
+
     public void setAluno(Aluno aluno) {
         this.aluno = aluno;
     }
@@ -98,5 +115,17 @@ public class Usuario implements java.io.Serializable {
                 .stream()
                 .map(RoleGrantedAuthority::new)
                 .collect(toList()));
+    }
+
+    public boolean ehAdmin() {
+        return temFuncao("ROLE_ADMIN");
+    }
+
+    public boolean temFuncao(String funcao) {
+        return getFuncoes().stream().anyMatch(m -> m.getNome().equals(funcao));
+    }
+
+    public boolean temAluno() {
+        return getAluno() != null;
     }
 }

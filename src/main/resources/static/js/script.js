@@ -8,6 +8,7 @@ $(function(){
     var my_custom_options = {
         "no-duplicate": true,
         "edit-on-delete": false,
+        "case-sensitive": true
     };
 
     var obj = $("#tag");

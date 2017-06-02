@@ -39,9 +39,21 @@
                 <div th:if="${#fields.hasErrors('professor')}" th:errors="*{professor}"></div>
             </div>
 
+            <div>
+                <div><label th:for="*{local}">Local</label></div>
+                <div><input type="text" th:field="*{local}" placeholder="Local" /></div>
+                <div th:if="${#fields.hasErrors('local')}" th:errors="*{local}"></div>
+            </div>
+
+            <div>
+                <div><label th:for="*{livro}">Livro</label></div>
+                <div><input type="text" th:field="*{livro}" placeholder="Livro" /></div>
+                <div th:if="${#fields.hasErrors('livro')}" th:errors="*{livro}"></div>
+            </div>
+
             <div class="field text-align-center">
-                <button type="submit"><i class="fa fa-sign-in" aria-hidden="true"></i> <span>Save</span></button>
-                <a class="button" th:href="@{/grupos/index}"><i class="fa fa-close" aria-hidden="true"></i> <span>Cancel</span></a>
+                <button type="submit"><i class="fa fa-check" aria-hidden="true"></i> <span th:text="#{grupos.salvar}">Save</span></button>
+                <a class="button" th:href="@{/grupos/index}"><i class="fa fa-close" aria-hidden="true"></i> <span th:text="#{grupos.cancelar}">Cancel</span></a>
             </div>
         </fieldset>
     </form>

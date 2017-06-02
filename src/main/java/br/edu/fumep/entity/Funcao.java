@@ -1,5 +1,7 @@
 package br.edu.fumep.entity;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 import javax.persistence.*;
 
 /**
@@ -12,6 +14,7 @@ public class Funcao implements java.io.Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    @NotBlank
     private String nome;
     @ManyToOne
     private Usuario usuario;

@@ -3,24 +3,26 @@
          xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
     <h2>User</h2>
 
-    <table>
+    <table class="width-1">
         <thead>
         <tr>
-            <th>#</th>
-            <th>Username</th>
-            <th>Enabled</th>
-            <th>Edit</th>
-            <th>Delete</th>
+            <th class="text-align-left">#</th>
+            <th class="text-align-left" th:text="#{usuarios.nome}">Username</th>
+            <th th:text="#{usuarios.ativo}">Enabled</th>
+            <th th:text="#{usuarios.acoes}">Actions</th>
         </tr>
         </thead>
 
         <tbody>
-            <tr th:each="u : ${list}">
+            <tr th:each="u : ${list}" th:if="!${u.ehAdmin()}">
                 <td th:text="${u.id}"></td>
                 <td th:text="${u.login}">Login</td>
-                <td th:text="${u.ativo}">Active</td>
-                <td><a th:href="@{/usuarios/editar(id=${u.id})}">Edit</a></td>
-                <td><a th:href="@{/usuarios/excluir(id=${u.id})}">Delete</a></td>
+                <td class="text-align-center" th:if="${u.ativo}">Sim</td>
+                <td class="text-align-center" th:unless="${u.ativo}">Não</td>
+                <td class="text-align-center">
+                    <a class="button" th:href="@{/usuarios/editar(id=${u.id})}"><i aria-hidden="true" class="fa fa-pencil"></i> <span th:text="#{usuarios.editar}">Edit</span></a>
+                    <a class="button" th:href="@{/usuarios/excluir(id=${u.id})}"><i aria-hidden="true" class="fa fa-trash"></i> <span th:text="#{usuarios.excluir}">Delete</span></a>
+                </td>
             </tr>
         </tbody>
     </table>

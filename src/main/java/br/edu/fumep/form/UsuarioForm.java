@@ -1,6 +1,7 @@
 package br.edu.fumep.form;
 
 import br.edu.fumep.entity.Usuario;
+import org.hibernate.validator.constraints.NotBlank;
 
 /**
  * Created by arabasso on 23/04/2017.
@@ -8,6 +9,9 @@ import br.edu.fumep.entity.Usuario;
  */
 public class UsuarioForm {
     private long id;
+    @NotBlank
+    private String nome;
+    @NotBlank
     private String login;
     private String senha;
     private String confirmarSenha;
@@ -18,10 +22,19 @@ public class UsuarioForm {
 
     public UsuarioForm(Usuario usuario) {
         this.id = usuario.getId();
+        this.nome = usuario.getAluno().getNome();
         this.login = usuario.getLogin();
         this.senha = usuario.getSenha();
         this.confirmarSenha = usuario.getSenha();
         this.ativo = usuario.isAtivo();
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public long getId() {
@@ -62,5 +75,9 @@ public class UsuarioForm {
 
     public void setConfirmarSenha(String confirmarSenha) {
         this.confirmarSenha = confirmarSenha;
+    }
+
+    public boolean temSenha() {
+        return getSenha() != null || !getSenha().equals("");
     }
 }

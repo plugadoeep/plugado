@@ -24,8 +24,11 @@
         <div>
             <strong>Professor: </strong><span th:text="${grupo.professor}"></span>
         </div>
+        <div class="margin-bottom-1">
+            <strong>Tags: </strong><span th:text="${grupo.tags}"></span>
+        </div>
         <div th:if="${usuario.aluno} != null" th:unless="${grupo.alunoEstaInserido(usuario.aluno)}">
-            <a th:href="@{'/grupos/ingressar/' + ${grupo.id}}" title="Ingressar">Sigin</a>
+            <a class="button" th:href="@{'/grupos/ingressar/' + ${grupo.id}}" title="Ingressar">Ingressar</a>
         </div>
     </div>
 </section>

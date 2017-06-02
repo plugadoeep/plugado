@@ -78,18 +78,24 @@ public class GruposController {
         grupoEstudo.setCoordenador(form.getCoordenador());
         grupoEstudo.setMateria(form.getMateria());
         grupoEstudo.setProfessor(form.getProfessor());
+        grupoEstudo.setLocal(form.getLocal());
+        grupoEstudo.setLivro(form.getLivro());
 
         grupoEstudo.setGruposEstudoAluno(new ArrayList<>());
 
         Usuario usuario = getUsuario();
 
-        grupoEstudo.getGruposEstudoAluno().add(new GrupoEstudoAluno(grupoEstudo, usuario.getAluno()));
+        if (usuario.temAluno()) {
+            grupoEstudo.getGruposEstudoAluno().add(new GrupoEstudoAluno(grupoEstudo, usuario.getAluno()));
+        }
 
         grupoEstudoRepositorio.save(grupoEstudo);
 
-        ControleUsuario controleUsuario = new ControleUsuario(grupoEstudo, usuario.getAluno(), 0);
+        if (usuario.temAluno()) {
+            ControleUsuario controleUsuario = new ControleUsuario(grupoEstudo, usuario.getAluno(), 0);
 
-        controleUsuarioRepositorio.save(controleUsuario);
+            controleUsuarioRepositorio.save(controleUsuario);
+        }
 
         return "redirect:/grupos/index";
     }
@@ -111,6 +117,38 @@ public class GruposController {
         model.addAttribute("formMensagem", new MensagemForm(grupoEstudo, usuario.getAluno()));
 
         return "grupos/editar";
+    }
+
+    @GetMapping(value = {"/excluir/{id}"})
+    public String excluir(@PathVariable long id){
+        grupoEstudoRepositorio.delete(id);
+
+        return "redirect:/grupos/index";
+    }
+
+    @PostMapping(value = {"/editar"})
+    public String editar(@Valid @ModelAttribute("form") GrupoEstudoForm form, BindingResult bindingResult, Model model){
+        GrupoEstudo grupoEstudo = grupoEstudoRepositorio.findOne(form.getId());
+
+        model.addAttribute("grupoEstudo", grupoEstudo);
+
+        if (bindingResult.hasErrors()){
+            return "grupos/editar";
+        }
+
+        if (grupoEstudo == null) {
+            return "grupos/editar";
+        }
+
+        grupoEstudo.setNome(form.getNome());
+        grupoEstudo.setCurso(form.getCurso());
+        grupoEstudo.setCoordenador(form.getCoordenador());
+        grupoEstudo.setMateria(form.getMateria());
+        grupoEstudo.setProfessor(form.getProfessor());
+
+        grupoEstudoRepositorio.save(grupoEstudo);
+
+        return "redirect:/grupos/editar/" + grupoEstudo.getId();
     }
 
     @Autowired
@@ -193,10 +231,9 @@ public class GruposController {
             tagRepositorio.save(tag);
         }
 
-        GrupoEstudoTag grupoEstudoTag = new GrupoEstudoTag();
+        GrupoEstudo ge = grupoEstudoRepositorio.findOne(grupoEstudo);
 
-        grupoEstudoTag.setGrupoEstudo(grupoEstudoRepositorio.findOne(grupoEstudo));
-        grupoEstudoTag.setTag(tag);
+        GrupoEstudoTag grupoEstudoTag = new GrupoEstudoTag(ge, tag);
 
         grupoEstudoTagRepositorio.save(grupoEstudoTag);
 

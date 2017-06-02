@@ -13,9 +13,9 @@ public class ControleUsuario implements java.io.Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private GrupoEstudo grupoEstudo;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private Aluno aluno;
     private int nivel;
 

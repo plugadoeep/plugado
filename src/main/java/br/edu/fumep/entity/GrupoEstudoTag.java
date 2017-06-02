@@ -40,4 +40,12 @@ public class GrupoEstudoTag implements java.io.Serializable {
     public void setId(long id) {
         this.id = id;
     }
+
+    protected GrupoEstudoTag() {
+    }
+
+    public GrupoEstudoTag(GrupoEstudo grupoEstudo, Tag tag) {
+        this.grupoEstudo = grupoEstudo;
+        this.tag = tag;
+    }
 }

@@ -12,9 +12,13 @@ INSERT INTO aluno (nome, curso, semestre, usuario_id) VALUES ('Raphael Basso', '
 INSERT INTO aluno (nome, curso, semestre, usuario_id) VALUES ('Maraline Bedran', 'Ciência da Computação', '7º Semestre', 3);
 INSERT INTO aluno (nome, curso, semestre, usuario_id) VALUES ('Leonardo Marchese', 'Ciência da Computação', '7º Semestre', 4);
 INSERT INTO aluno (nome, curso, semestre, usuario_id) VALUES ('Mateus Nunes', 'Ciência da Computação', '7º Semestre', 5);
-INSERT INTO grupo_estudo (nome, curso, coordenador, materia, professor) VALUES ('Amigos', 'Ciência da Computação', 'Clerivaldo Roccia', 'Engenharia de Software II', 'Luis Camolesi');
-INSERT INTO tag (descricao) VALUES ('Teste');
+INSERT INTO grupo_estudo (nome, curso, coordenador, materia, professor) VALUES ('Exatas', 'Ciência da Computação', 'Clerivaldo Roccia', 'Engenharia de Software II', 'Luis Camolesi');
+INSERT INTO tag (descricao) VALUES ('Cálculo');
+INSERT INTO tag (descricao) VALUES ('Álgebra');
+INSERT INTO tag (descricao) VALUES ('Geometria Analítica');
 INSERT INTO grupo_estudo_tag (grupo_estudo_id, tag_id) VALUES (1, 1);
+INSERT INTO grupo_estudo_tag (grupo_estudo_id, tag_id) VALUES (1, 2);
+INSERT INTO grupo_estudo_tag (grupo_estudo_id, tag_id) VALUES (1, 3);
 INSERT INTO grupo_estudo_aluno (aluno_id, grupo_estudo_id) VALUES (1, 1);
 INSERT INTO grupo_estudo_aluno (aluno_id, grupo_estudo_id) VALUES (2, 1);
 INSERT INTO grupo_estudo_aluno (aluno_id, grupo_estudo_id) VALUES (3, 1);

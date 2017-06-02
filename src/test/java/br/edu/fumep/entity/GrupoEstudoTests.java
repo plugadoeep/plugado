@@ -47,4 +47,26 @@ public class GrupoEstudoTests {
     public void alunoNuloEstaInseridoGrupo() {
         assertThat(grupoEstudo.alunoEstaInserido(null), is(false));
     }
+
+    @Test
+    public void temTags(){
+        assertThat(grupoEstudo.temTags(), is(false));
+    }
+
+    @Test
+    public void tagsVazia() {
+        assertThat(grupoEstudo.getTags(), is(""));
+    }
+
+    @Test
+    public void variasTags() {
+        Tag tag1 = new Tag("Álgebra");
+        Tag tag2 = new Tag("Cálculo");
+
+        grupoEstudo.setGruposEstudoTag(new ArrayList<>());
+        grupoEstudo.getGruposEstudoTag().add(new GrupoEstudoTag(grupoEstudo, tag1));
+        grupoEstudo.getGruposEstudoTag().add(new GrupoEstudoTag(grupoEstudo, tag2));
+
+        assertThat(grupoEstudo.getTags(), is("Álgebra, Cálculo"));
+    }
 }

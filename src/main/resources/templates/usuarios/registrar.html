@@ -1,7 +1,7 @@
 <section id="content" class="width-1-2" layout:decorator="layout" layout:fragment="content"
          xmlns:th="http://www.thymeleaf.org"
          xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-    <h2>Register</h2>
+    <h2>Registrar-se</h2>
     <!--/*@thymesVar id="form" type="br.edu.fumep.form.UsuarioForm"*/-->
     <form th:action="@{/usuarios/registrar}" th:object="${form}" method="post">
         <ul th:if="${#fields.hasErrors('global')}">
@@ -10,29 +10,36 @@
 
         <fieldset>
             <div class="field">
-                <div class="grid-1-2"><label th:for="*{login}">Login</label>
-                </div><div class="grid-1-2"><input type="text" th:field="*{login}" placeholder="Login" class="width-1" />
-                </div><div class="field-error-message" th:if="${#fields.hasErrors('login')}" th:errors="*{login}">
+                <div><label th:for="*{nome}">Nome</label>
+                </div><div><input type="text" th:field="*{nome}" placeholder="Nome" />
+            </div><div th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}">
+            </div>
+            </div>
+
+            <div class="field">
+                <div><label th:for="*{login}">Login</label>
+                </div><div><input type="text" th:field="*{login}" placeholder="Login" />
+                </div><div th:if="${#fields.hasErrors('login')}" th:errors="*{login}">
                 </div>
             </div>
 
             <div class="field">
-                <div class="grid-1-2"><label th:for="*{senha}">Senha</label>
-                </div><div class="grid-1-2"><input type="password" th:field="*{senha}" placeholder="Senha" class="width-1" />
-                </div><div class="field-error-message" th:if="${#fields.hasErrors('senha')}" th:errors="*{senha}">
+                <div><label th:for="*{senha}">Senha</label>
+                </div><div><input type="password" th:field="*{senha}" placeholder="Senha" />
+                </div><div th:if="${#fields.hasErrors('senha')}" th:errors="*{senha}">
                 </div>
             </div>
 
-            <div class="field">
-                <div class="grid-1-2"><label th:for="*{confirmarSenha}">Confirmar senha</label>
-                </div><div class="grid-1-2"><input type="password" th:field="*{confirmarSenha}" placeholder="Confirmar senha" class="width-1" />
-                </div><div class="field-error-message" th:if="${#fields.hasErrors('confirmarSenha')}" th:errors="*{confirmarSenha}">
+            <div class="field margin-bottom-1">
+                <div><label th:for="*{confirmarSenha}">Confirmar senha</label>
+                </div><div><input type="password" th:field="*{confirmarSenha}" placeholder="Confirmar senha" />
+                </div><div th:if="${#fields.hasErrors('confirmarSenha')}" th:errors="*{confirmarSenha}">
                 </div>
             </div>
 
             <div class="field text-align-center">
-                <button type="submit"><i class="fa fa-sign-in" aria-hidden="true"></i> <span>Register</span></button>
-                <a class="button" th:href="@{/login}"><i class="fa fa-close" aria-hidden="true"></i> <span>Cancel</span></a>
+                <button type="submit"><i class="fa fa-sign-in" aria-hidden="true"></i> <span th:text="#{registrar.submit}">Register</span></button>
+                <a class="button" th:href="@{/login}"><i class="fa fa-close" aria-hidden="true"></i> <span th:text="#{registrar.cancel}">Cancel</span></a>
             </div>
         </fieldset>
     </form>

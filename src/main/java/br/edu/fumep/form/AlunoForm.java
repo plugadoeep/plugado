@@ -1,5 +1,7 @@
 package br.edu.fumep.form;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 /**
  * Created by Leonardo Marchese on 02/05/2017.
  *
@@ -7,6 +9,7 @@ package br.edu.fumep.form;
 public class AlunoForm {
     
     private long id;
+    @NotBlank
     private String nome;
     private String curso;
     private String semestre;

@@ -1,5 +1,8 @@
 package br.edu.fumep.form;
 
+import org.hibernate.validator.constraints.NotBlank;
+
+import java.time.LocalDate;
 import java.util.Date;
 
 /**
@@ -9,7 +12,8 @@ import java.util.Date;
 public class NotificacaoForm {
     
     private long Id;
-    private Date dataNotificacao;
+    private LocalDate dataNotificacao;
+    @NotBlank
     private String descricaoNotificacao;
 
     public long getId() {
@@ -20,11 +24,11 @@ public class NotificacaoForm {
         this.Id = Id;
     }
 
-    public Date getDataNotificacao() {
+    public LocalDate getDataNotificacao() {
         return dataNotificacao;
     }
 
-    public void setDataNotificacao(Date dataNotificacao) {
+    public void setDataNotificacao(LocalDate dataNotificacao) {
         this.dataNotificacao = dataNotificacao;
     }
 

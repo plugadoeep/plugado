@@ -37,7 +37,7 @@ public class UsuariosController {
             }
 
             try{
-                Usuario usuario = new Usuario(form.getLogin(), form.getSenha());
+                Usuario usuario = new Usuario(form.getNome(), form.getLogin(), form.getSenha());
 
                 usuarioRepositorio.save(usuario);
             }
@@ -78,8 +78,13 @@ public class UsuariosController {
 
         Usuario u = usuarioRepositorio.findOne(form.getId());
 
+        u.getAluno().setNome(form.getNome());
         u.setLogin(form.getLogin());
-        u.setSenha(form.getSenha());
+
+        if (form.temSenha()) {
+            u.setSenha(form.getSenha());
+        }
+
         u.setAtivo(form.isAtivo());
 
         usuarioRepositorio.save(u);

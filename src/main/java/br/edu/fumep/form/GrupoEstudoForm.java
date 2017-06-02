@@ -1,6 +1,7 @@
 package br.edu.fumep.form;
 
 import br.edu.fumep.entity.GrupoEstudo;
+import org.hibernate.validator.constraints.NotBlank;
 
 /**
  * Created by Leonardo Marchese on 02/05/2017.
@@ -9,6 +10,7 @@ import br.edu.fumep.entity.GrupoEstudo;
 public class GrupoEstudoForm {
     
     private long id;
+    @NotBlank
     private String nome;
     private String professor;
     private String livro;

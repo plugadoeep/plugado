@@ -2,6 +2,7 @@ package br.edu.fumep.form;
 
 import br.edu.fumep.entity.Aluno;
 import br.edu.fumep.entity.GrupoEstudo;
+import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.web.multipart.MultipartFile;
 
 /**
@@ -21,7 +22,10 @@ public class MensagemForm {
 
     public MensagemForm(GrupoEstudo grupoEstudo, Aluno aluno) {
         this.grupoEstudoId = grupoEstudo.getId();
-        this.alunoId = aluno.getId();
+
+        if (aluno != null) {
+            this.alunoId = aluno.getId();
+        }
     }
 
     public long getId() {
