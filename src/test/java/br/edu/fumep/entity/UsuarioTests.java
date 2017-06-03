@@ -37,7 +37,9 @@ public class UsuarioTests {
 
     @Test
     public void temAluno() {
-        assertThat(usuario.temAluno(), is(true));
+        usuario.setAluno(new Aluno(usuario.getLogin(), usuario));
+		
+		assertThat(usuario.temAluno(), is(true));
     }
 
     @Test
