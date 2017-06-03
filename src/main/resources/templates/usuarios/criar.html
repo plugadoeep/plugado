@@ -1,19 +1,17 @@
-<section class="content" layout:decorator="layout" layout:fragment="content"
+<section id="content" class="width-1-2" layout:decorator="layout" layout:fragment="content"
          xmlns:th="http://www.thymeleaf.org"
          xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-    <h2>Editar</h2>
+    <h2><i aria-hidden="true" class="fa fa-user"></i> <span>Criar usuário</span></h2>
     <!--/*@thymesVar id="form" type="br.edu.fumep.form.UsuarioForm"*/-->
-    <form th:action="@{/usuarios/editar}" th:object="${form}" method="post">
+    <form th:action="@{/usuarios/criar}" th:object="${form}" method="post">
         <ul th:if="${#fields.hasErrors('global')}">
             <li th:each="err : ${#fields.errors('global')}" th:text="${err}">Input is incorrect</li>
         </ul>
 
         <fieldset>
-            <input type="hidden" th:field="*{id}" />
-
             <div class="field">
                 <div><label th:for="*{nome}">Nome</label>
-                    </div><div><input type="text" th:field="*{nome}" placeholder="Nome" />
+                </div><div><input type="text" th:field="*{nome}" placeholder="Nome" />
             </div><div th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}">
             </div>
             </div>
@@ -40,12 +38,12 @@
             </div>
 
             <div class="field margin-bottom-1">
-                <input type="checkbox" th:field="*{ativo}"/> <label th:for="${#ids.prev('ativo')}">Ativo</label>
+                <input type="checkbox" th:field="*{ativo}"/> <label th:for="${#ids.next('ativo')}">Ativo</label>
             </div>
 
             <div class="field text-align-center">
-                <button type="submit"><span>Salvar</span></button>
-                <a class="button" th:href="@{/usuarios/index}"><i class="fa fa-close" aria-hidden="true"></i> <span>Cancelar</span></a>
+                <button type="submit"><i class="fa fa-sign-in" aria-hidden="true"></i> <span th:text="#{registrar.submit}">Register</span></button>
+                <a class="button" th:href="@{/login}"><i class="fa fa-close" aria-hidden="true"></i> <span th:text="#{registrar.cancel}">Cancel</span></a>
             </div>
         </fieldset>
     </form>

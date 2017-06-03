@@ -1,7 +1,11 @@
 <section layout:decorator="layout" layout:fragment="content"
          xmlns:th="http://www.thymeleaf.org"
          xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-    <h2>User</h2>
+    <h2><i aria-hidden="true" class="fa fa-user"></i> <span>Usuários</span></h2>
+
+    <div class="text-align-right">
+        <a class="button" th:href="@{/usuarios/criar}" title="Criar">Criar</a>
+    </div>
 
     <table class="width-1">
         <thead>

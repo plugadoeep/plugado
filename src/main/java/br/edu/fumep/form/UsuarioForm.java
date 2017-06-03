@@ -78,6 +78,6 @@ public class UsuarioForm {
     }
 
     public boolean temSenha() {
-        return getSenha() != null || !getSenha().equals("");
+        return getSenha() != null && !getSenha().equals("");
     }
 }

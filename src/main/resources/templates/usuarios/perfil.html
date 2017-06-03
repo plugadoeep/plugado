@@ -1,9 +1,9 @@
 <section class="content" layout:decorator="layout" layout:fragment="content"
          xmlns:th="http://www.thymeleaf.org"
          xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-    <h2>Editar</h2>
+    <h2>Perfil</h2>
     <!--/*@thymesVar id="form" type="br.edu.fumep.form.UsuarioForm"*/-->
-    <form th:action="@{/usuarios/editar}" th:object="${form}" method="post">
+    <form th:action="@{/usuarios/perfil}" th:object="${form}" method="post">
         <ul th:if="${#fields.hasErrors('global')}">
             <li th:each="err : ${#fields.errors('global')}" th:text="${err}">Input is incorrect</li>
         </ul>
@@ -32,15 +32,11 @@
             </div>
             </div>
 
-            <div class="field">
+            <div class="field margin-bottom-1">
                 <div><label th:for="*{confirmarSenha}">Confirmar senha</label>
                 </div><div><input type="password" th:field="*{confirmarSenha}" placeholder="Confirmar senha" />
             </div><div th:if="${#fields.hasErrors('confirmarSenha')}" th:errors="*{confirmarSenha}">
             </div>
-            </div>
-
-            <div class="field margin-bottom-1">
-                <input type="checkbox" th:field="*{ativo}"/> <label th:for="${#ids.prev('ativo')}">Ativo</label>
             </div>
 
             <div class="field text-align-center">

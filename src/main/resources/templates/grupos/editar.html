@@ -38,7 +38,7 @@
                         <div th:if="${#fields.hasErrors('coordenador')}" th:errors="*{coordenador}"></div>
                     </div>
 
-                    <div class="margin-bottom-1">
+                    <div>
                         <div><label th:for="*{professor}">Professor</label></div>
                         <div><input type="text" th:field="*{professor}" placeholder="Professor" /></div>
                         <div th:if="${#fields.hasErrors('professor')}" th:errors="*{professor}"></div>
@@ -50,7 +50,7 @@
                         <div th:if="${#fields.hasErrors('local')}" th:errors="*{local}"></div>
                     </div>
 
-                    <div>
+                    <div class="margin-bottom-1">
                         <div><label th:for="*{livro}">Livro</label></div>
                         <div><input type="text" th:field="*{livro}" placeholder="Livro" /></div>
                         <div th:if="${#fields.hasErrors('livro')}" th:errors="*{livro}"></div>

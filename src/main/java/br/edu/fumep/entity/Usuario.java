@@ -111,7 +111,7 @@ public class Usuario implements java.io.Serializable {
     }
 
     public UserDetails toUserDetails() {
-        return new User(login, senha, funcoes
+        return new User(login, senha, ativo, true, true, true, funcoes
                 .stream()
                 .map(RoleGrantedAuthority::new)
                 .collect(toList()));
